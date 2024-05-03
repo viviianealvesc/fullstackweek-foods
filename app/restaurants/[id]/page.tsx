@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import RestaurantImage from "./_components/restaurant-image";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
-import DeliveryInfo from "@/app/_components/delivery-info";
 import ProductList from "@/app/_components/product-list";
+import DeliveryInfo from "@/app/_components/delivery-info";
 
 interface RestaurantPageProps {
   params: {
@@ -19,13 +19,10 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
     },
     include: {
       categories: {
-        orderBy: {
-          createdAt: "desc",
-        },
         include: {
           products: {
             where: {
-              restaurantId: id,
+              restaurantId: id
             },
             include: {
               restaurant: {

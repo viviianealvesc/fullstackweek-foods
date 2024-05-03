@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import ProductItem from "./product-item";
 
 interface ProductListProps {
-  product: Prisma.ProductGetPayload<{
+  products: Prisma.ProductGetPayload<{
     include: {
       restaurant: {
         select: {
@@ -10,19 +10,16 @@ interface ProductListProps {
         };
       };
     };
-  }>[]
+  }>[];
 }
 
-const ProductList = async ({ products }: ProductListProps) => {
-
+const ProductList = ({ products }: ProductListProps) => {
   return (
-    <div className="flex overflow-x-scroll gap-4 px-5 [&::-webkit-scrollbar]:hidden">
-      {products.map((product) =>
-        <ProductItem key={product.id} product={product}/>
-      
-      )}
+    <div className="flex gap-4 overflow-x-scroll px-5 [&::-webkit-scrollbar]:hidden">
+      {products.map((product) => (
+        <ProductItem key={product.id} product={product} />
+      ))}
     </div>
-    
   );
 };
 
