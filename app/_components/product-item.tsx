@@ -22,7 +22,8 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <div className="w-[150px] min-w-[150px] space-y-2">
+<Link className="w-[150px] min-w-[150px]" href={`/products/${product.id}`}>
+    <div className="w-full space-y-2">
       <div className="relative h-[150px] w-full">
         <Image src={product.imageUrl} alt={product.name} fill className="rounded-lg object-cover shadow-md" />
 
@@ -54,6 +55,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           </span>
       </div>
     </div>
+    </Link>
   );
 };
 
