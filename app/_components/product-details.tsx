@@ -6,9 +6,10 @@ import { calculateProductTotalPrice, formatCurrency } from "../_helpers/price";
 import DiscountBadge from "./discount-badge";
 import { Button } from "./ui/button";
 import { BikeIcon, ChevronLeftIcon, ChevronRightIcon, TimerIcon } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Card } from "./ui/card";
 import ProductList from "./product-list";
+import { CartContext } from "../_context/cart";
 
 
 interface ProductDetailsProps {
@@ -27,6 +28,9 @@ interface ProductDetailsProps {
 
 const ProductDetails = ({ product, complementaryProducts } : ProductDetailsProps) => {
   const [quantity, setQuantity] = useState(1);
+  const {addProductToCart, products} = useContext(CartContext);
+
+  const handleAddToCartClick = () => addProductToCart(product);
 
   const handleIncreaseQuantityClick = () => setQuantity((currentState) => currentState + 1);
   const handleDecreaseQuantityClick = () => {setQuantity((currentState) => {
@@ -119,7 +123,7 @@ const ProductDetails = ({ product, complementaryProducts } : ProductDetailsProps
         </div>
 
         <div className="mt-6 px-5">
-          <Button className="w-full font-semibold">Adicionar á sacola</Button>
+          <Button className="w-full font-semibold" onClick={handleAddToCartClick}>Adicionar á sacola</Button>
         </div>
       </div>
     );

@@ -24,7 +24,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
   return (
 <Link className="w-[150px] min-w-[150px]" href={`/products/${product.id}`}>
     <div className="w-full space-y-2">
-      <div className="relative h-[150px] w-full">
+      <div className="relative aspect-square h-[150px] w-full">
         <Image src={product.imageUrl} alt={product.name} fill className="rounded-lg object-cover shadow-md" />
 
         {product.discountPercentage && (
